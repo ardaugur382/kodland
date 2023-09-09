@@ -15,4 +15,4 @@ if word in meme_dict.keys():
     print(meme_dict[word])
 else:
     # Kelime eşleşmiyorsa ne yapmalıyız?
-    print("o kelimeyi bende bilmiyorum ekler misin")
+    print("o kelimeyi bende bilmiyorum")
