@@ -1,14 +1,10 @@
 import random
 
-chars = "+-/*!&$#?=@abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+def gen_pass(pass_length):
+    elements = "+-/*!&$#?=@abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+    password = ""
 
+    for i in range(pass_length):
+        password += random.choice(elements)
 
-parola_uzunlugu = int(input("şifreniz ne kadar uzun olsun"))
-
-parola= ""
-
-for i in range(parola_uzunlugu):
-    parola += random.choice(chars)
-
-
-print(parola)    
+    return password
