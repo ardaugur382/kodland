@@ -1,27 +1,21 @@
 import discord
-from botlogic import gen_pass
-# ayricaliklar (intents) değişkeni botun ayrıcalıklarını depolayacak
+from discord.ext import commands
+
 intents = discord.Intents.default()
-# Mesajları okuma ayrıcalığını etkinleştirelim
 intents.message_content = True
-# client (istemci) değişkeniyle bir bot oluşturalım ve ayrıcalıkları ona aktaralım
-client = discord.Client(intents=intents)
 
-@client.event
+bot = commands.Bot(command_prefix='$', intents=intents)
+
+@bot.event
 async def on_ready():
-    print(f'We have logged in as {client.user}')
+    print(f'{bot.user} olarak giriş yaptık')
 
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
-    if message.content.startswith('$hello'):
-        await message.channel.send("Hi!")
-    elif message.content.startswith('$bye'):
-        await message.channel.send("\\U0001f642")
-    elif message.content.startswith('$parola'):
-        await message.channel.send(gen_pass(12))
-    else:
-        await message.channel.send(message.content)
+@bot.command()
+async def merhaba(ctx):
+    await ctx.send(f'Merhaba {bot.user}! Ben bir botum!')
 
-client.run("bot kodu")
+@bot.command()
+async def heh(ctx, count_heh = 5):
+    await ctx.send("he" * count_heh)
+
+bot.run("")
